@@ -1,0 +1,81 @@
+1. List IDs and Titles of Posts with a 'wow' Reaction
+SELECT DISTINCT
+  p.id,
+  p.content
+FROM Post AS p
+JOIN Reaction AS r
+  ON p.id = r.post_id
+WHERE
+  r.reaction_type = 'wow'
+ORDER BY
+  p.id;
+
+2. Identify the Most Recent Post of Each User
+SELECT
+  posted_by,
+  MAX(posted_at) AS latest_post
+FROM Post
+GROUP BY
+  posted_by;
+
+3. List Posts with Their Comment Counts
+SELECT
+  p.id,
+  COUNT(c.id) AS comment_count
+FROM Post AS p
+LEFT JOIN Comment AS c
+  ON p.id = c.post_id
+GROUP BY
+  p.id
+ORDER BY
+  p.id ASC;
+
+4. Identify the Post with the Maximum 'like' Reactions
+SELECT
+  post_id,
+  COUNT(*) AS like_count
+FROM Reaction
+WHERE
+  reaction_type = 'like' AND post_id IS NOT NULL
+GROUP BY
+  post_id
+ORDER BY
+  like_count DESC
+LIMIT 1;
+
+5. List Users Who Have Made More Comments Than Reactions
+WITH AllUsers AS (
+  SELECT
+    commented_by AS user
+  FROM Comment
+  UNION
+  SELECT
+    reacted_by AS user
+  FROM Reaction
+), CommentCounts AS (
+  SELECT
+    commented_by AS user,
+    COUNT(*) AS num_comments
+  FROM Comment
+  GROUP BY
+    commented_by
+), ReactionCounts AS (
+  SELECT
+    reacted_by AS user,
+    COUNT(*) AS num_reactions
+  FROM Reaction
+  GROUP BY
+    reacted_by
+)
+SELECT
+  au.user,
+  COALESCE(cc.num_comments, 0) AS total_comments
+FROM AllUsers AS au
+LEFT JOIN CommentCounts AS cc
+  ON au.user = cc.user
+LEFT JOIN ReactionCounts AS rc
+  ON au.user = rc.user
+WHERE
+  COALESCE(cc.num_comments, 0) > COALESCE(rc.num_reactions, 0)
+ORDER BY
+  total_comments DESC; 

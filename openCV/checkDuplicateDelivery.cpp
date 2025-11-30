@@ -28,10 +28,10 @@ std::vector<std::vector<int>> solution(int n, int m, std::vector<char> figures) 
     std::vector<std::vector<int>> grid(n, std::vector<int>(m, 0));
     std::map<char, std::vector<std::pair<int, int>>> shapes;
     shapes['A'] = {{0, 0}};                                // Horizontal domino
-    shapes['B'] = {{0, 0}, {1, 0}};                                // Vertical domino
+    shapes['B'] = {{0, 0}, {0, 1}, {0, 2}};                                // Vertical domino
     shapes['C'] = {{0, 0}, {0, 1}, {1, 0}, {1, 1}};                // 2x2 block
-    shapes['D'] = {{0, 1}, {1, 0}, {1, 1}, {1, 2}};                // T shape
-    shapes['E'] = {{0, 1}, {1, 0}, {1, 1}, {1, 2}, {2, 1}};        // Plus shape
+    shapes['D'] = {{0, 0}, {1, 0}, {2, 0}, {1, 1}};                // T shape
+    // shapes['E'] = {{0, 1}, {1, 0}, {1, 1}, {1, 2}, {2, 1}};        // Plus shape
     for (int i = 0; i < figures.size(); ++i) {
         char figureChar = figures[i];
         int figureNum = i + 1;
@@ -56,4 +56,9 @@ std::vector<std::vector<int>> solution(int n, int m, std::vector<char> figures) 
     }
 
     return grid;
+}
+
+
+if(figure == 'A'){{
+    if(grid[i][j]==0) grid[i][j]
 }

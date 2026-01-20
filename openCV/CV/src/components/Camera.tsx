@@ -64,13 +64,9 @@ const Camera: React.FC<CameraProps> = ({ width = 640, height = 480 }) => {
         video: { 
           width, 
           height,
-          facingMode: 'user',
-          // Additional options you can add:
-          // facingMode: 'user' | 'environment' (front/back camera)
-          // aspectRatio: 16/9
-          // frameRate: { min: 10, ideal: 30, max: 60 }
+          facingMode: 'environment', // Changed to environment to get non-mirrored view
         },
-        audio: false // Set to true if you need microphone access
+        audio: false
       })
       
       // Assign the stream to video element if ref exists

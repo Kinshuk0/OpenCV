@@ -1,0 +1,81 @@
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+bun.lock
+
+# Rust
+target/
+Cargo.lock
+*.pdb
+
+# Build artifacts
+*.o
+*.so
+*.dylib
+*.exe
+*.dSYM/
+main
+*.out
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+
+# Other projects (if you only want openCV)
+closures/
+Common_collections/
+crawler-bot/
+enums/
+ENVs/
+error/
+generics/
+guessing_game/
+hello_cargo/
+hello_world/
+langraph/
+maps/
+minigrep/
+modules/
+references/
+restaurant/
+Solana/
+strings/
+structures/
+traits/
+understanding_match/
+variables/
+timeSeriesViewer/
